@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "reports": {
+      ".read": "auth != null && auth.token.firebase.sign_in_provider != 'anonymous'",
+      "$reportId": {
+        ".write": "auth != null && (auth.token.firebase.sign_in_provider == 'anonymous' || auth.token.firebase.sign_in_provider == 'password')",
+        ".validate": "newData.hasChildren(['id','namaGuru','sekolah','tanggal','materi','dokumentasi','waktuInput'])"
+      }
+    }
+  }
+}

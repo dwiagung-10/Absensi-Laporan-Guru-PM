@@ -1,0 +1,11 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /dokumentasi/{reportId}/{fileName} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && (request.auth.token.firebase.sign_in_provider == 'anonymous' || request.auth.token.firebase.sign_in_provider == 'password');
+      allow update: if request.auth != null && request.auth.token.firebase.sign_in_provider == 'password';
+      allow delete: if request.auth != null && request.auth.token.firebase.sign_in_provider == 'password';
+    }
+  }
+}
